@@ -1,0 +1,85 @@
+.author-page {
+    font-family: 'Arial', sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .author-meetings-list {
+    margin-bottom: 20px;
+  }
+  
+  .author-meetings-list h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .author-meetings-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .author-meetings-list li {
+    margin-bottom: 15px;
+  }
+  
+  .author-meetings-list label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .author-meetings-list input {
+    margin-right: 10px;
+  }
+  
+  .author-buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .author-buttons-container button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #45a049;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .author-buttons-container input {
+    margin-right: 10px;
+  }
+  
+  .author-buttons-container label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+  }
+
+  .author-buttons-container button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #45a049;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.author-buttons-container button:hover {
+    background-color: #35803e;
+}
+
+.author-buttons-container button:active {
+    transform: scale(0.95);
+}
+  
