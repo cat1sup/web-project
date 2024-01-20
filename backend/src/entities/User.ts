@@ -1,5 +1,5 @@
 import db from "../dbConfig";
-import Sequelize from "sequelize";
+import Sequelize, { ModelDefined } from "sequelize";
 
 export interface UserAttributes {
     UserId: Number,
@@ -9,9 +9,9 @@ export interface UserAttributes {
     UserConference: Number
 };
 
-export interface UserCreateAttributes extends UserAttributes { };
+export interface UserCreationAttributes extends UserAttributes { };
 
-const User = db.define("User", {
+const User: ModelDefined<UserAttributes, UserCreationAttributes> = db.define("User", {
     UserId: {
         type: Sequelize.INTEGER,
         primaryKey: true,

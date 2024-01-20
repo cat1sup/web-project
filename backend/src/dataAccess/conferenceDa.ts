@@ -1,6 +1,6 @@
 import db from "../dbConfig";
 import Conference, { ConferenceCreationAttributes } from "../entities/Conference";
-import User, { UserAttributes, UserCreateAttributes } from "../entities/User";
+import User from "../entities/User";
 import { Reviewers } from "../entities/dbConst";
 
 async function createConference(conference: ConferenceCreationAttributes) {
@@ -35,7 +35,7 @@ async function updateConference(conference: ConferenceCreationAttributes, id: nu
 
         const existReviwers = await User.findAll({
             where: {
-                UserConferece: conference.ConferenceId
+                UserConference: conference.ConferenceId
             }
         });
 
