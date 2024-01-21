@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Register.css';
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [selectedRole, setSelectedRole] = useState('');
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -12,14 +15,47 @@ const Register = () => {
       setUsername(value);
     } else if (name === 'password') {
       setPassword(value);
+    } else if (name === 'confirmPassword') {
+      setConfirmPassword(value);
     }
   };
 
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    console.log('Logging in as:', username, 'having the password:', password, 'as', selectedRole);
+
+    if (password !== confirmPassword) {
+      alert('Passwords do not match. Please try again.');
+      return;
+    }
+
+    // Simulating registration by storing user data in localStorage
+    const user = {
+      username,
+      password,
+      role: selectedRole,
+    };
+
+    // Check if the user already exists in localStorage
+    const existingUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+    const userExists = existingUsers.some((existingUser) => existingUser.username === user.username);
+
+    if (userExists) {
+      alert('User already registered. Please use a different username.');
+    } else {
+      // Add the new user to the list of registered users
+      localStorage.setItem('registeredUsers', JSON.stringify([...existingUsers, user]));
+
+      // Display success message
+      alert('User has been successfully registered!');
+
+      // Redirect to the login page
+      navigate('/login');
+    }
+
+    // Clear form fields
     setUsername('');
     setPassword('');
+    setConfirmPassword('');
     setSelectedRole('');
   };
 
@@ -28,9 +64,9 @@ const Register = () => {
       <header className="header-style">
         <h1>Conference Meeting</h1>
       </header>
-      <div className="custom-container">     
+      <div className="custom-container">
         <h2>Register</h2>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleRegister}>
           <label className="custom-label">
             Username:
             <input
@@ -59,15 +95,14 @@ const Register = () => {
             Password:
             <input
               type="password"
-              name="password"
-              value={password}
+              name="confirmPassword"
+              value={confirmPassword}
               onChange={handleInputChange}
-              placeholder="Enter your password here"
+              placeholder="Confirm your password"
               className="custom-input"
             />
           </label>
           <br />
-
           <div className="styled-dropdown">
             <label className="custom-select-label">
               Choose your role:

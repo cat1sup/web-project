@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LoginForm.css';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [selectedRole, setSelectedRole] = useState('');
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -17,7 +19,20 @@ const LoginForm = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log('Logging in as:', username, 'having the password:', password, 'as', selectedRole);
+    switch (selectedRole) {
+      case 'organizer':
+        navigate('/organizer');
+        break;
+      case 'reviewer':
+        navigate('/reviewer');
+        break;
+      case 'author':
+        navigate('/author');
+        break;
+      default:
+        console.log('Invalid role selected');
+    }
+
     setUsername('');
     setPassword('');
     setSelectedRole('');
@@ -28,10 +43,10 @@ const LoginForm = () => {
       <header className="header-style">
         <h1>Conference Meeting</h1>
       </header>
-      <div className="custom-container">     
+      <div className="custom-container">
         <h2>Login</h2>
         <form onSubmit={handleLogin}>
-          <label className="custom-label">
+          <label>
             Username:
             <input
               type="text"
@@ -43,7 +58,7 @@ const LoginForm = () => {
             />
           </label>
           <br />
-          <label className="custom-label">
+          <label>
             Password:
             <input
               type="password"
@@ -55,22 +70,19 @@ const LoginForm = () => {
             />
           </label>
           <br />
-
-          <div className="styled-dropdown">
-            <label className="custom-select-label">
-              Choose your role:
-              <select
-                className="custom-select"
-                value={selectedRole}
-                onChange={(e) => setSelectedRole(e.target.value)}
-              >
-                <option value="">Select Role</option>
-                <option value="organizer">Organizer</option>
-                <option value="reviewer">Reviewer</option>
-                <option value="author">Author</option>
-              </select>
-            </label>
-          </div>
+          <label>
+            Choose your role:
+            <select
+              className="custom-select"
+              value={selectedRole}
+              onChange={(e) => setSelectedRole(e.target.value)}
+            >
+              <option value="">Select Role</option>
+              <option value="organizer">Organizer</option>
+              <option value="reviewer">Reviewer</option>
+              <option value="author">Author</option>
+            </select>
+          </label>
           <br />
           <button type="submit" className="custom-button">
             Login

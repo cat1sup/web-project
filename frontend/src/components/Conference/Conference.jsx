@@ -1,8 +1,6 @@
-// Conference.js
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Conference.css'; // Import the additional CSS
+import './Conference.css';
 
 const Conference = () => {
   return (

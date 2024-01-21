@@ -52,7 +52,6 @@ const Organizer = () => {
         <h1>Create Conference</h1>
       </header>
       <div className="organizer-container">
-        <h2>Login</h2>
         <form onSubmit={handleSubmit} className="organizer-form">
           <label className="organizer-label">
             Conference Name:

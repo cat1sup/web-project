@@ -14,6 +14,9 @@ const App = () => {
         <Route path="/" element={<Conference />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/organizer" element={<Organizer />} />
+        <Route path="/author" element={<Author />} />
+        <Route path="/reviewer" element={<Reviewer />} />
       </Routes>
     </Router>
   );
