@@ -1,0 +1,68 @@
+.reviewer-page {
+    font-family: 'Arial', sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .reviewer-meeting-info {
+    margin-bottom: 20px;
+  }
+  
+  .reviewer-meeting-info h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .reviewer-meeting-info p {
+    margin-bottom: 10px;
+  }
+  
+  .reviewer-feedback-container {
+    margin-bottom: 20px;
+  }
+  
+  .reviewer-feedback-container h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .reviewer-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  
+  .reviewer-buttons-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .reviewer-buttons-container button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #45a049;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .reviewer-buttons-container button:hover {
+    background-color: #36873a;
+  }
+  
+  .reviewer-buttons-container p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+  
