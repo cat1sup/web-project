@@ -3,6 +3,7 @@ import env from 'dotenv';
 import User from './User';
 import Conference from './Conference';
 import { Reviewers } from './dbConst';
+import Reviewer from './Reviewer';
 
 env.config();
 
@@ -18,8 +19,11 @@ function createDatabase() {
 }
 
 function fkConfig() {
-    Conference.hasMany(User, { as: Reviewers, foreignKey: 'ConferenceId' });
-    User.belongsTo(Conference, { foreignKey: 'UserConference' });
+    Conference.hasMany(Reviewer, { as: Reviewers, foreignKey: 'ConferenceId' });
+    Reviewer.belongsTo(Conference, { foreignKey: 'ReviewerConference' });
+
+    User.hasOne(Reviewer, { foreignKey: 'UserId' });
+    Reviewer.belongsTo(User, { foreignKey: "ReviewerUserId" });
 }
 
 function db_init() {

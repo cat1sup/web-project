@@ -1,10 +1,10 @@
 import db from "../dbConfig";
 import Conference, { ConferenceCreationAttributes } from "../entities/Conference";
-import User from "../entities/User";
+import Reviewer from "../entities/Reviewer";
 import { Reviewers } from "../entities/dbConst";
 
 async function createConference(conference: ConferenceCreationAttributes) {
-    return await Conference.create(conference, { include: [{ model: User, as: Reviewers }] });
+    return await Conference.create(conference, { include: [{ model: Reviewer, as: Reviewers }] });
 }
 
 async function getConferenceById(id: number) {
@@ -33,19 +33,19 @@ async function updateConference(conference: ConferenceCreationAttributes, id: nu
     try {
         await findConference.update(conference);
 
-        const existReviwers = await User.findAll({
+        const existReviwers = await Reviewer.findAll({
             where: {
-                UserConference: conference.ConferenceId
+                ReviewerConference: conference.ConferenceId
             }
         });
 
         if (existReviwers.length > 0) {
-            let reviewerIds = existReviwers.map(a => a.dataValues.UserId);
-            let reviewerIdsDeleted = reviewerIds.filter(id => !conference.Reviewers.find(add => add.UserId === id)?.UserId);
+            let reviewerIds = existReviwers.map(a => a.dataValues.ReviewerId);
+            let reviewerIdsDeleted = reviewerIds.filter(id => !conference.Reviewers.find(add => add.ReviewerId === id)?.ReviewerId);
             if (reviewerIdsDeleted.length > 0) {
-                await User.destroy({
+                await Reviewer.destroy({
                     where: {
-                        UserId: reviewerIdsDeleted
+                        ReviewerId: reviewerIdsDeleted
                     }
                 });
             }
@@ -56,10 +56,10 @@ async function updateConference(conference: ConferenceCreationAttributes, id: nu
         //     await User.bulkCreate(insertedA);
         // }
 
-        const updatedA = conference.Reviewers.filter(a => a.UserId !== 0);
+        const updatedA = conference.Reviewers.filter(a => a.ReviewerId !== 0);
         if (updatedA.length > 0) {
             for (let item of updatedA) {
-                const findA = await User.findByPk(item.UserId.toString());
+                const findA = await Reviewer.findByPk(item.ReviewerId.toString());
                 await findA?.update(item);
             }
         }
