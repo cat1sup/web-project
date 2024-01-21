@@ -3,10 +3,8 @@ import Sequelize, { ModelDefined } from "sequelize";
 
 export interface UserAttributes {
     UserId: Number,
-    UserFirstName: String,
-    UserLastName: String,
-    UserType: String,
-    UserConference: Number
+    UserName: String,
+    UserType: String
 };
 
 export interface UserCreationAttributes extends UserAttributes { };
@@ -18,20 +16,13 @@ const User: ModelDefined<UserAttributes, UserCreationAttributes> = db.define("Us
         autoIncrement: true,
         allowNull: false
     },
-    UserFirstName: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    UserLastName: {
+    UserName: {
         type: Sequelize.STRING,
         allowNull: false
     },
     UserType: {
         type: Sequelize.STRING,
         allowNull: false
-    },
-    UserConference: {
-        type: Sequelize.INTEGER
     }
 });
 

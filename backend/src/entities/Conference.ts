@@ -1,10 +1,10 @@
 import db from "../dbConfig";
 import Sequelize, { ModelDefined } from "sequelize";
-import { UserAttributes } from "./User";
+import { ReviewerAttributes } from "./Reviewer";
 
 export interface ConferenceAttributes {
     ConferenceId: number,
-    Reviewers: UserAttributes[]
+    Reviewers: ReviewerAttributes[]
 };
 
 export interface ConferenceCreationAttributes extends ConferenceAttributes { };
@@ -15,6 +15,14 @@ const Conference: ModelDefined<ConferenceAttributes, ConferenceCreationAttribute
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
+    },
+    ConferenceName: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    ConferenceDescription: {
+        type: Sequelize.STRING,
+        allowNull: true
     }
 });
 
